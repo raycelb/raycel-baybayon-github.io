@@ -36,7 +36,6 @@ body {
   color: var(--color-purple-dark);
   /* Single static purple background — shared by all pages, rendered once */
   background-color: var(--color-white);
-  background-attachment: fixed;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
@@ -1845,7 +1844,7 @@ body {
 ══════════════════════════════════════════ */
 .cert-bento-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 1.5rem;
   width: 100%;
@@ -1884,45 +1883,16 @@ body {
   display: block;
 }
 
-/* Grid Spans */
-.cert-featured {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-}
-
-.cert-top {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-}
-
-.cert-bottom {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-}
-
 /* Responsive */
 @media (max-width: 860px) {
   .cert-bento-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     aspect-ratio: auto;
+    gap: 1rem;
   }
 
-  .cert-featured {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    aspect-ratio: 4 / 3;
-  }
-
-  .cert-top {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    aspect-ratio: 4 / 3;
-  }
-
-  .cert-bottom {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
+  .cert-bento-item {
     aspect-ratio: 4 / 3;
   }
 }
@@ -2851,5 +2821,22 @@ body {
   }
   .work-card {
     min-width: 85vw;
+  }
+}
+
+/* Mobile Performance Optimizations */
+@media (max-width: 900px) {
+  /* Simplify expensive drop-shadow filters on mobile devices to prevent GPU overload and overheating */
+  .deco-icon,
+  .deco-icon-sm {
+    filter: drop-shadow(0px 3px 5px rgba(0, 0, 0, 0.4));
+  }
+  
+  /* Simplify box-shadows on cards */
+  .skill-card,
+  .skill-card--featured,
+  .desc-container,
+  .edu-tube {
+    box-shadow: 2px 2px 0 var(--color-purple-dark), 4px 6px 12px rgba(0, 0, 0, 0.2);
   }
 }
